@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Test {
+public class TestInheritance {
     public static void main(String[] args) {
         List<Integer> integerList = List.of(1, 2, 3, 4, 5);
 
