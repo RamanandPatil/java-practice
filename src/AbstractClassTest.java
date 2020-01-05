@@ -12,7 +12,7 @@ interface AccountService {
      * @param id owner unique identifier
      * @return account or null
      */
-    Account findAccountByOwnerId(long id);
+    Account_Old findAccountByOwnerId(long id);
 
     /**
      * It count the number of account with balance > the given value
@@ -24,13 +24,13 @@ interface AccountService {
 }
 // Declare and implement your AccountServiceImpl here
 
-class Account {
+class Account_Old {
 
     private long id;
     private long balance;
     private User owner;
 
-    public Account(long id, long balance, User owner) {
+    public Account_Old(long id, long balance, User owner) {
         this.id = id;
         this.balance = balance;
         this.owner = owner;
@@ -76,23 +76,23 @@ class User {
 
 class AccountServiceImpl implements AccountService {
 
-    private Account[] accounts;
+    private Account_Old[] accountOlds;
 
-    public AccountServiceImpl(Account[] accounts) {
-        this.accounts = accounts;
+    public AccountServiceImpl(Account_Old[] accountOlds) {
+        this.accountOlds = accountOlds;
     }
 
-    @Override public Account findAccountByOwnerId(long id) {
-        for (Account account : accounts) {
-            if (account.getOwner().getId() == id) {
-                return account;
+    @Override public Account_Old findAccountByOwnerId(long id) {
+        for (Account_Old accountOld : accountOlds) {
+            if (accountOld.getOwner().getId() == id) {
+                return accountOld;
             }
         }
         return null;
     }
 
     @Override public long countAccountsWithBalanceGreaterThan(long value) {
-        return Arrays.stream(accounts)
+        return Arrays.stream(accountOlds)
                      .filter(account -> account.getBalance() > value).count();
     }
 }
