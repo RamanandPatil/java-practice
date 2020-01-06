@@ -68,26 +68,32 @@ public class Boxes {
         int z2 = scanner.nextInt();
 
 
-        // boolean equals = x1 == x2 && y1 == y2 && z1 == z2 ||
-        //                  x1 == y2 && y1 == z2 && z1 == x2 ||
-        //                  x1 == z2 && y1 == x2 && z1 == y2;
-        //
-        // boolean less = x1 <= x2 && y1 <= y2 && z1 <= z2 &&
-        //                x1 <= y2 && y1 <= z2 && z1 <= x2 &&
-        //                x1 <= z2 && y1 <= x2 && z1 <= y2;
-        //
-        // boolean greater = x1 >= x2 && y1 >= y2 && z1 >= z2 &&
-        //                   x1 >= y2 && y1 >= z2 && z1 >= x2 &&
-        //                   x1 >= z2 && y1 >= x2 && z1 >= y2;
+        boolean equals = x1 == x2 && y1 == y2 && z1 == z2 ||
+                         x1 == y2 && y1 == z2 && z1 == x2 ||
+                         x1 == z2 && y1 == x2 && z1 == y2;
 
-        // if (equals) {
-        //     System.out.println("Box 1 = Box 2");
-        // } else if (less) {
-        //     System.out.println("Box 1 < Box 2");
-        // } else if (greater) {
-        //     System.out.println("Box 1 > Box 2");
-        // } else {
-        //     System.out.println("Incomparable");
-        // }
+        boolean less = (x1 <= x2 && y1 <= y2 && z1 <= z2) &&
+                       (x1 < x2 || y1 < y2 && z1 < z2) ||
+                       (x1 <= y2 && y1 <= z2 && z1 <= x2) &&
+                       (x1 < y2 || y1 < z2 || z1 < x2) ||
+                       (x1 <= z2 && y1 <= x2 && z1 <= y2) &&
+                       (x1 < z2 || y1 < x2 || z1 < y2);
+
+        boolean greater = (x1 >= x2 && y1 >= y2 && z1 >= z2) &&
+                          (x1 > x2 || y1 > y2 && z1 > z2) ||
+                          (x1 >= y2 && y1 >= z2 && z1 >= x2) &&
+                          (x1 > y2 || y1 > z2 || z1 > x2) ||
+                          (x1 >= z2 && y1 >= x2 && z1 >= y2) &&
+                          (x1 > z2 || y1 > x2 || z1 > y2);
+
+        if (equals) {
+            System.out.println("Box 1 = Box 2");
+        } else if (less) {
+            System.out.println("Box 1 < Box 2");
+        } else if (greater) {
+            System.out.println("Box 1 > Box 2");
+        } else {
+            System.out.println("Incomparable");
+        }
     }
 }
