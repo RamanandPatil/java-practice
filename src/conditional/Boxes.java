@@ -1,7 +1,10 @@
+package conditional;
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Conditional statement → Boxes
+ * Conditional statement → conditional.Boxes
  *
  * Code Challenge — Write a program
  * Typical task for a job interview.
@@ -61,30 +64,25 @@ public class Boxes {
         int x1 = scanner.nextInt();
         int y1 = scanner.nextInt();
         int z1 = scanner.nextInt();
+        int[] box1 = {x1, y1, z1};
+        Arrays.sort(box1);
 
         // Box2 Size
         int x2 = scanner.nextInt();
         int y2 = scanner.nextInt();
         int z2 = scanner.nextInt();
+        int[] box2 = {x2, y2, z2};
+        Arrays.sort(box2);
 
 
-        boolean equals = x1 == x2 && y1 == y2 && z1 == z2 ||
-                         x1 == y2 && y1 == z2 && z1 == x2 ||
-                         x1 == z2 && y1 == x2 && z1 == y2;
+        boolean equals = box1[0] == box2[0] && box1[1] == box2[1] &&
+                         box1[2] == box2[2];
 
-        boolean less = (x1 <= x2 && y1 <= y2 && z1 <= z2) &&
-                       (x1 < x2 || y1 < y2 && z1 < z2) ||
-                       (x1 <= y2 && y1 <= z2 && z1 <= x2) &&
-                       (x1 < y2 || y1 < z2 || z1 < x2) ||
-                       (x1 <= z2 && y1 <= x2 && z1 <= y2) &&
-                       (x1 < z2 || y1 < x2 || z1 < y2);
+        boolean less = !equals && box1[0] <= box2[0] && box1[1] <= box2[1] &&
+                       box1[2] <= box2[2];
 
-        boolean greater = (x1 >= x2 && y1 >= y2 && z1 >= z2) &&
-                          (x1 > x2 || y1 > y2 && z1 > z2) ||
-                          (x1 >= y2 && y1 >= z2 && z1 >= x2) &&
-                          (x1 > y2 || y1 > z2 || z1 > x2) ||
-                          (x1 >= z2 && y1 >= x2 && z1 >= y2) &&
-                          (x1 > z2 || y1 > x2 || z1 > y2);
+        boolean greater = !less && box1[0] >= box2[0] && box1[1] >= box2[1] &&
+                          box1[2] >= box2[2];
 
         if (equals) {
             System.out.println("Box 1 = Box 2");
