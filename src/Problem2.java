@@ -15,30 +15,30 @@ public class Problem2 {
         Map<Character, Integer> map = new HashMap<>();
         char[] array;
         int len = numString.length();
-        boolean palindrom;
-        int maxPalindrom = 0;
+        boolean palindrome;
+        int maxPalindrome = 0;
 
         for (int j = 2; j < len; j += 2) {
             for (int i = 0; i <= len - j; i++) {
                 array = numString.substring(i, i + j).toCharArray();
                 map.clear();
-                palindrom = true;
+                palindrome = true;
                 for (char c : array) {
                     map.put(c, map.containsKey(c) ? (map.get(c) + 1) : 1);
                 }
                 for (Entry<Character, Integer> entry : map.entrySet()) {
                     if (entry.getValue() % 2 != 0) {
-                        palindrom = false;
+                        palindrome = false;
                         break;
                     }
                 }
-                if (palindrom) {
-                    maxPalindrom = array.length;
+                if (palindrome) {
+                    maxPalindrome = array.length;
                     break;
                 }
             }
         }
-        return maxPalindrom;
+        return maxPalindrome;
     }
 }
 
