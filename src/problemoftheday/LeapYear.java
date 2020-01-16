@@ -58,7 +58,7 @@ public class LeapYear {
         Scanner scanner = new Scanner(System.in);
         int number = scanner.nextInt();
         boolean isLeap =
-                (number % 4 == 0 && number % 100 != 0) || (number % 400 == 0);
+                number % 4 == 0 && number % 100 != 0 || number % 400 == 0;
         if (isLeap) {
             System.out.println("Leap");
         } else {
